@@ -16,13 +16,13 @@ async function fetchData() {
   try {
     const res = await fetch(ENDPOINT);
     const data = await res.json();
-    generateCards(data);
+    generateCards(data, divEl);
   } catch (error) {
     console.log(`Some errors have occured please check your spelling, error message: ${error.message}`);
   }
 }
 
-function generateCards(arr) {
+function generateCards(arr, dest) {
   arr.forEach((car) => {
     const string = `
             <div class="card">
@@ -33,7 +33,7 @@ function generateCards(arr) {
                   </p>
                 </div>
             `;
-    divEl.insertAdjacentHTML('beforeend', string);
+    dest.insertAdjacentHTML('beforeend', string);
   });
 }
 fetchData();
