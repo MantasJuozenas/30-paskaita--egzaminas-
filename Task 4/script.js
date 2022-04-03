@@ -13,9 +13,13 @@ const ENDPOINT = 'cars.json';
 const divEl = document.getElementById('output');
 
 async function fetchData() {
-  const res = await fetch(ENDPOINT);
-  const data = await res.json();
-  generateCards(data);
+  try {
+    const res = await fetch(ENDPOINT);
+    const data = await res.json();
+    generateCards(data);
+  } catch (error) {
+    console.log(`Some errors have occured please check your spelling, error message: ${error.message}`);
+  }
 }
 
 function generateCards(arr) {
