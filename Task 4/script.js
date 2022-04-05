@@ -10,3 +10,30 @@ bent minimalų stilių;
 -------------------------------------------------------------------------- */
 
 const ENDPOINT = 'cars.json';
+const divEl = document.getElementById('output');
+
+async function fetchData() {
+  try {
+    const res = await fetch(ENDPOINT);
+    const data = await res.json();
+    generateCards(data, divEl);
+  } catch (error) {
+    console.log(`Some errors have occured please check your spelling, error message: ${error.message}`);
+  }
+}
+
+function generateCards(arr, dest) {
+  arr.forEach((car) => {
+    const string = `
+            <div class="card">
+                  <h2 class="cardTitle">${car.brand}</h2>
+                  <p class="cardModels">Models:</p>
+                  <p class="cardText">
+                    ${car.models}
+                  </p>
+                </div>
+            `;
+    dest.insertAdjacentHTML('beforeend', string);
+  });
+}
+fetchData();
