@@ -23,7 +23,8 @@ btnEl.addEventListener('click', (e) => {
 
 function calculate(dest, input) {
   dest.innerHTML = '';
-  if (typeof input.value !== 'number') return (dest.innerHTML = 'Ivedete bloga skaiciu');
+  console.log(typeof input.value);
+  if (Number(input.value) != input.value) return (dest.innerHTML = 'Ivedete bloga skaiciu');
   const lb = input.value * 2.2046;
   const g = input.value / 0.001;
   const oz = input.value * 35.274;
